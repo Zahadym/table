@@ -112,7 +112,7 @@ function addItem() {
     let subject = document.querySelector("#input-subject").value;
     let grade = document.querySelector("#input-grade").value;
     let sumItem = users.length + 1;
-    if (grade > 0 && grade < 6 && grade == "Зачет"){
+    if (grade > 0 && grade < 6 || grade == "Зачет"){
       if (date !== "" && subject !== "") {
         users.push({id: sumItem, date: date, date2: date2, subject: subject, grade: grade})
     }
