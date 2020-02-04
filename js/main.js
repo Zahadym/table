@@ -14,7 +14,7 @@ see();
 function see() {
     document.querySelector("#table").innerHTML = "";
     for (i = 0; i < users.length; i++) {
-      document.querySelector("#table").innerHTML += "<tr class=\"id\" id=a" + users[i].id + "><td>" + users[i].id + "</td><td>" + users[i].date + "</td><td>" + users[i].subject + "</td><td>" + users[i].grade + "</td><td class=\"table-row-close\"><button value=\"a" + users[i].id +"\" id=\"btn-row-close\" data-btn=" + users[i].id + " type=\"button\" class=\"btn btn-outline-danger btn-width\">Удалить</button></td></tr>";
+      document.querySelector("#table").innerHTML += "<tr class=\"id\" id=a" + users[i].id + "><td>" + users[i].id + "</td><td>" + users[i].date + "</td><td>" + users[i].subject + "</td><td>" + users[i].grade + "</td><td class=\"table-row-close\"><button value=\"" + users[i].id +"\" id=\"btn-row-close\" data-btn=" + users[i].id + " type=\"button\" class=\"btn btn-outline-danger btn-width\">Удалить</button></td></tr>";
     }
 }
 
@@ -133,6 +133,8 @@ $('input[type="date"]').on('input change',function() {
 // удаление строки
 
 $('#table').delegate('.btn-width', 'click',  function (){
-  let zzz = "#" + $(this).val();
-  $('.table').find(zzz).remove();
+  let index = $(this).val();
+  users.splice(index - 1, 1);
+  see();
+  numberNew();
 });
