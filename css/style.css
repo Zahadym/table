@@ -1,0 +1,17 @@
+
+.text-center {
+    justify-content: center;
+}
+.thead-bg {
+    background-color: #17a2b8;
+}
+.btn-width {
+    padding-top: 0;
+    width: 90px;
+    height: 30px;
+}
+.hiden {
+    height: 0;
+    width: 0;
+    border: none;
+}
