@@ -17,7 +17,7 @@ see();
 function see() {
     document.querySelector("#table").innerHTML = "";
     for (i = 0; i < users.length; i++) {
-      document.querySelector("#table").innerHTML += "<tr class=\"id\" data-id=\"" + users[i].id + "\"><td>" + users[i].id + "</td><td>" + users[i].date + "</td><td><input data-subject=\"" + users[i].id + "\" placeholder=\"" + users[i].subject + "\" id=\"c" + users[i].id + "\" class=\"input-subject-corr\" type=\"text\"></td><td value=\"" + users[i].id + "\"  id=\"td-grade\"><input data-grade=\"" + users[i].id + "\" placeholder=\"" + users[i].grade + "\" id=\"b" + users[i].id + "\" class=\"input-grade-corr\" type=\"text\"></td><td class=\"table-row-close\"><button value=\"" + users[i].id +"\" id=\"btn-row-close\" data-btn=" + users[i].id + " type=\"button\" class=\"btn btn-outline-danger btn-width\">Удалить</button></td></tr>";
+      document.querySelector("#table").innerHTML += "<tr data-id=\"" + users[i].id + "\"><td class=\"id\">" + users[i].id + "</td><td><input data-date=\"" + users[i].id + "\" placeholder=\"" + users[i].date + "\" class=\"input-date-corr\" type=\"text\"></td><td><input data-subject=\"" + users[i].id + "\" placeholder=\"" + users[i].subject + "\" class=\"input-subject-corr\" type=\"text\"></td><td value=\"" + users[i].id + "\"  id=\"td-grade\"><input data-grade=\"" + users[i].id + "\" placeholder=\"" + users[i].grade + "\" class=\"input-grade-corr\" type=\"text\"></td><td class=\"table-row-close\"><button value=\"" + users[i].id +"\" id=\"btn-row-close\" data-btn=" + users[i].id + " type=\"button\" class=\"btn btn-outline-danger btn-width\">Удалить</button></td></tr>";
     }
 }
 
@@ -104,7 +104,7 @@ function sortSubject() {
 
 
 
-// добавление предмета
+// добавление строки
 
 document.querySelector("#btn-add").onclick = addItem;
 
@@ -119,7 +119,14 @@ function addItem() {
     if (grade > 0 && grade < 6 || grade == "Зачет"){
       if (date !== "" && subject !== "") {
         users.push({id: sumItem, date: date, date2: date2, subject: subject, grade: grade})
+      }
+      else {
+        alert("Введены некоректно дата или предмет!");
+      }
+      
     }
+    else {
+      alert("Введена некоректная оценка!");
     }
     
     numberNew();
@@ -147,7 +154,6 @@ $('#table').delegate('.btn-width', 'click',  function (){
 
 // редактирование оценки
 
-
 $('#table').delegate('.input-grade-corr', 'keypress',  function (e){
   
   if(e.which == 13) {
@@ -161,13 +167,12 @@ $('#table').delegate('.input-grade-corr', 'keypress',  function (e){
     } 
     else {
       $(this).val("");
+      alert("Введена некоректная оценка!");
     }
   }
 });
 
-
 // редактирование предмета
-
 
 $('#table').delegate('.input-subject-corr', 'keypress', function (e){
   
@@ -182,9 +187,31 @@ $('#table').delegate('.input-subject-corr', 'keypress', function (e){
     } 
     else {
       $(this).val("");
+      alert("Введен некоректный предмет!");
     }
   }
 });
 
 // редактирование даты
 
+$('#table').delegate('.input-date-corr', 'keypress', function (e){
+  
+  if(e.which == 13) {
+    let indexDate = $(this).attr("data-date") - 1;
+    console.log(indexDate);
+    let indexDate2 = $(this).val();
+    console.log(indexDate2);
+    var arrD = indexDate2.split("-");
+    arrD[1] -= 1;
+    var d = new Date(arrD[2], arrD[1], arrD[0]);
+    if ((d.getFullYear() == arrD[2]) && (d.getMonth() == arrD[1]) && (d.getDate() == arrD[0])) {
+      console.log(users[indexDate].date);
+      users[indexDate].date = indexDate2;
+      console.log(users[indexDate].date);
+      numberNew();
+    } else {
+      $(this).val("");
+      alert("Введена некорректная дата!");
+    }
+  }
+});

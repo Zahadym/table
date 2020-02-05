@@ -22,13 +22,16 @@
     cursor: pointer;
 }
 .input-grade-corr {
-    padding-left: 20px;
     width: 40px;
     border: none;
 }
 .input-subject-corr {
     width: 140px;
     border: none;
+}
+.input-date-corr {
+    border: none;
+    width: 90px;
 }
 input[type="text"]::-moz-placeholder {color: #000;}
 input[type="text"]::-webkit-input-placeholder { color: #000; }
@@ -53,5 +56,8 @@ input[type="text"]::placeholder { color: #000; }
     }
     .input-subject-corr {
         width: 110px;
+    }
+    .id {
+        display: none;
     }
 }
