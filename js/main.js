@@ -206,7 +206,17 @@ $('#table').delegate('.input-date-corr', 'keypress', function (e){
     arrD[1] -= 1;
     var d = new Date(arrD[2], arrD[1], arrD[0]);
     if ((d.getFullYear() == arrD[2]) && (d.getMonth() == arrD[1]) && (d.getDate() == arrD[0])) {
+      arrD[1] += 1;
+      if (arrD[1] < 10) {
+        arrD[1] = "0" + arrD[1];
+        console.log(arrD[1]);
+      }
+      if (arrD[0] < 10) {
+        arrD[0] = "0" + arrD[0];
+        console.log(arrD[0]);
+      }
       console.log(users[indexDate].date);
+      indexDate2 = arrD[0] + "-" + arrD[1] + "-" + arrD[2]
       users[indexDate].date = indexDate2;
       users[indexDate].date2 = indexDate3;
       console.log(users[indexDate].date);
