@@ -47,17 +47,29 @@ input[type="text"]::placeholder { color: #000; }
     }
     h1 {
         font-size: 1.6rem;
+        width: 340px;
     }
     .table {
         font-size: 14px;
     }
-    .table th {
-        padding: .25rem;
-    }
     .input-subject-corr {
         width: 110px;
     }
+    .input-date-corr {
+        width: 75px;
+    }
     .id {
         display: none;
+    }
+    .container {
+        padding: 0 5px;
+    }
+    .table td, .table th {
+        padding: .25rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+    .row {
+        margin: 0;
     }
 }
