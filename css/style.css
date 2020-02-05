@@ -22,16 +22,19 @@
     cursor: pointer;
 }
 .input-grade-corr {
+    padding-left: 20px;
     width: 40px;
     border: none;
 }
-input[type="text"]::-moz-placeholder {
-    color: #000; /* Цвет подсказывающего текста */
-   }
-   input[type="text"]::-webkit-input-placeholder { color: #000; }
-   input[type="text"]:-ms-input-placeholder { color: #000; }
-   input[type="text"]::-ms-input-placeholder { color: #000; }
-   input[type="text"]::placeholder { color: #000; } 
+.input-subject-corr {
+    width: 140px;
+    border: none;
+}
+input[type="text"]::-moz-placeholder {color: #000;}
+input[type="text"]::-webkit-input-placeholder { color: #000; }
+input[type="text"]:-ms-input-placeholder { color: #000; }
+input[type="text"]::-ms-input-placeholder { color: #000; }
+input[type="text"]::placeholder { color: #000; } 
 
 @media (max-width: 576px) {
     .btn-width{
@@ -47,5 +50,8 @@ input[type="text"]::-moz-placeholder {
     }
     .table th {
         padding: .25rem;
+    }
+    .input-subject-corr {
+        width: 110px;
     }
 }

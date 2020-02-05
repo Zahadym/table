@@ -17,7 +17,7 @@ see();
 function see() {
     document.querySelector("#table").innerHTML = "";
     for (i = 0; i < users.length; i++) {
-      document.querySelector("#table").innerHTML += "<tr class=\"id\" id=a" + users[i].id + "><td>" + users[i].id + "</td><td>" + users[i].date + "</td><td>" + users[i].subject + "</td><td value=\"" + users[i].id + "\"  id=\"td-grade\"><input data-id=\"" + users[i].id + "\" placeholder=\"" + users[i].grade + "\" id=\"b" + users[i].id + "\" class=\"input-grade-corr\" type=\"text\"></td><td class=\"table-row-close\"><button value=\"" + users[i].id +"\" id=\"btn-row-close\" data-btn=" + users[i].id + " type=\"button\" class=\"btn btn-outline-danger btn-width\">Удалить</button></td></tr>";
+      document.querySelector("#table").innerHTML += "<tr class=\"id\" data-id=\"" + users[i].id + "\"><td>" + users[i].id + "</td><td>" + users[i].date + "</td><td><input data-subject=\"" + users[i].id + "\" placeholder=\"" + users[i].subject + "\" id=\"c" + users[i].id + "\" class=\"input-subject-corr\" type=\"text\"></td><td value=\"" + users[i].id + "\"  id=\"td-grade\"><input data-grade=\"" + users[i].id + "\" placeholder=\"" + users[i].grade + "\" id=\"b" + users[i].id + "\" class=\"input-grade-corr\" type=\"text\"></td><td class=\"table-row-close\"><button value=\"" + users[i].id +"\" id=\"btn-row-close\" data-btn=" + users[i].id + " type=\"button\" class=\"btn btn-outline-danger btn-width\">Удалить</button></td></tr>";
     }
 }
 
@@ -115,13 +115,14 @@ function addItem() {
     let subject = document.querySelector("#input-subject").value;
     let grade = document.querySelector("#input-grade").value;
     let sumItem = users.length + 1;
+    console.log(sumItem);
     if (grade > 0 && grade < 6 || grade == "Зачет"){
       if (date !== "" && subject !== "") {
         users.push({id: sumItem, date: date, date2: date2, subject: subject, grade: grade})
     }
     }
     
-    see();
+    numberNew();
     document.querySelector("#date").value = "";
     document.querySelector("#input-date").value = "";
     document.querySelector("#input-subject").value = "";
@@ -150,18 +151,40 @@ $('#table').delegate('.btn-width', 'click',  function (){
 $('#table').delegate('.input-grade-corr', 'keypress',  function (e){
   
   if(e.which == 13) {
-    let indexGrade = $(this).attr('data-id') - 1;
+    let indexGrade = $(this).attr("data-grade") - 1;
     let indexGrade2 = $(this).val();
     if(indexGrade2 > 0 && indexGrade2 < 6 || indexGrade2 == "Зачет"){
       console.log(users[indexGrade].grade);
       users[indexGrade].grade = indexGrade2;
       console.log(users[indexGrade].grade);
       numberNew();
-    }
+    } 
     else {
       $(this).val("");
     }
   }
 });
 
+
+// редактирование предмета
+
+
+$('#table').delegate('.input-subject-corr', 'keypress', function (e){
+  
+  if(e.which == 13) {
+    let indexSubject = $(this).attr("data-subject") - 1;
+    let indexSubject2 = $(this).val();
+    if(indexSubject2 !== ""){
+      console.log(users[indexSubject].subject);
+      users[indexSubject].subject = indexSubject2;
+      console.log(users[indexSubject].subject);
+      numberNew();
+    } 
+    else {
+      $(this).val("");
+    }
+  }
+});
+
+// редактирование даты
 
