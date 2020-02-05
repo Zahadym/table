@@ -2,9 +2,12 @@
 // начальные предметы
 
 let users = [
-    {id: 1, date: "12-01-2020", date2: "2020-01-12", subject: "Математика", grade: 4},
-    {id: 2, date: "11-01-2020", date2: "2020-01-11", subject: "Физика", grade: 3},
-    {id: 3, date: "10-01-2020", date2: "2020-01-10", subject: "Русский язык", grade: 5}
+    {id: 1, date: "12-01-2020", date2: "2020-01-12", subject: "Математика", grade: 1},
+    {id: 2, date: "11-01-2020", date2: "2020-01-11", subject: "Физика", grade: 2},
+    {id: 3, date: "10-01-2020", date2: "2020-01-10", subject: "Русский язык", grade: 3},
+    {id: 4, date: "09-01-2020", date2: "2020-01-09", subject: "Литература", grade: 4},
+    {id: 5, date: "08-02-2020", date2: "2020-02-08", subject: "Химия", grade: 5},
+    {id: 6, date: "10-02-2020", date2: "2020-02-10", subject: "Электротехника", grade: 'Зачет'}
   ];
 see();
 
@@ -41,7 +44,7 @@ function sortId() {
         }
         return 0;
       });
-    see();
+      numberNew();
 }
 
 
@@ -59,7 +62,7 @@ function sortGrade() {
         }
         return 0;
       });
-    see();
+      numberNew();
 }
 
 // сортировка по дате
@@ -77,7 +80,7 @@ function sortDate() {
         // a должно быть равным b
         return 0;
       });
-    see();
+      numberNew();
 }
 
 
@@ -96,7 +99,7 @@ function sortSubject() {
         // a должно быть равным b
         return 0;
       });
-    see();
+      numberNew();
 }
 
 
@@ -143,7 +146,6 @@ $('#table').delegate('.btn-width', 'click',  function (){
 
 // редактирование оценки
 
-$(".input-grade-corr").fade;
 
 $('#table').delegate('.input-grade-corr', 'keypress',  function (e){
   
@@ -151,12 +153,15 @@ $('#table').delegate('.input-grade-corr', 'keypress',  function (e){
     let indexGrade = $(this).attr('data-id') - 1;
     let indexGrade2 = $(this).val();
     if(indexGrade2 > 0 && indexGrade2 < 6 || indexGrade2 == "Зачет"){
-      console.log(indexGrade);
-      console.log(indexGrade2);
+      console.log(users[indexGrade].grade);
       users[indexGrade].grade = indexGrade2;
+      console.log(users[indexGrade].grade);
+      numberNew();
     }
     else {
       $(this).val("");
     }
   }
 });
+
+
