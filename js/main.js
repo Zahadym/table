@@ -17,7 +17,7 @@ see();
 function see() {
     document.querySelector("#table").innerHTML = "";
     for (i = 0; i < users.length; i++) {
-      document.querySelector("#table").innerHTML += "<tr data-id=\"" + users[i].id + "\"><td class=\"id\">" + users[i].id + "</td><td><input data-date=\"" + users[i].id + "\" placeholder=\"" + users[i].date + "\" class=\"input-date-corr\" type=\"text\"><input type=\"text\"></td><td><input data-subject=\"" + users[i].id + "\" placeholder=\"" + users[i].subject + "\" class=\"input-subject-corr\" type=\"text\"></td><td value=\"" + users[i].id + "\"  id=\"td-grade\"><input data-grade=\"" + users[i].id + "\" placeholder=\"" + users[i].grade + "\" class=\"input-grade-corr\" type=\"text\"></td><td class=\"table-row-close\"><button value=\"" + users[i].id +"\" id=\"btn-row-close\" data-btn=" + users[i].id + " type=\"button\" class=\"btn btn-outline-danger btn-width\">Удалить</button></td></tr>";
+      document.querySelector("#table").innerHTML += "<tr data-id=\"" + users[i].id + "\"><td class=\"id\">" + users[i].id + "</td><td><input data-date=\"" + users[i].id + "\" placeholder=\"" + users[i].date + "\" class=\"input-date-corr\" type=\"text\"><input class=\"hiden\" type=\"text\"></td><td><input data-subject=\"" + users[i].id + "\" placeholder=\"" + users[i].subject + "\" class=\"input-subject-corr\" type=\"text\"></td><td value=\"" + users[i].id + "\"  id=\"td-grade\"><input data-grade=\"" + users[i].id + "\" placeholder=\"" + users[i].grade + "\" class=\"input-grade-corr\" type=\"text\"></td><td class=\"table-row-close\"><button value=\"" + users[i].id +"\" id=\"btn-row-close\" data-btn=" + users[i].id + " type=\"button\" class=\"btn btn-outline-danger btn-width\">Удалить</button></td></tr>";
     }
 }
 
