@@ -33,6 +33,9 @@
     border: none;
     width: 90px;
 }
+form{
+    padding-bottom: 20px;
+}
 input[type="text"]::-moz-placeholder {color: #000;}
 input[type="text"]::-webkit-input-placeholder { color: #000; }
 input[type="text"]:-ms-input-placeholder { color: #000; }
