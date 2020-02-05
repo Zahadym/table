@@ -17,7 +17,7 @@ see();
 function see() {
     document.querySelector("#table").innerHTML = "";
     for (i = 0; i < users.length; i++) {
-      document.querySelector("#table").innerHTML += "<tr data-id=\"" + users[i].id + "\"><td class=\"id\">" + users[i].id + "</td><td><input data-date=\"" + users[i].id + "\" placeholder=\"" + users[i].date + "\" class=\"input-date-corr\" type=\"text\"></td><td><input data-subject=\"" + users[i].id + "\" placeholder=\"" + users[i].subject + "\" class=\"input-subject-corr\" type=\"text\"></td><td value=\"" + users[i].id + "\"  id=\"td-grade\"><input data-grade=\"" + users[i].id + "\" placeholder=\"" + users[i].grade + "\" class=\"input-grade-corr\" type=\"text\"></td><td class=\"table-row-close\"><button value=\"" + users[i].id +"\" id=\"btn-row-close\" data-btn=" + users[i].id + " type=\"button\" class=\"btn btn-outline-danger btn-width\">Удалить</button></td></tr>";
+      document.querySelector("#table").innerHTML += "<tr data-id=\"" + users[i].id + "\"><td class=\"id\">" + users[i].id + "</td><td><input data-date=\"" + users[i].id + "\" placeholder=\"" + users[i].date + "\" class=\"input-date-corr\" type=\"text\"><input type=\"text\"></td><td><input data-subject=\"" + users[i].id + "\" placeholder=\"" + users[i].subject + "\" class=\"input-subject-corr\" type=\"text\"></td><td value=\"" + users[i].id + "\"  id=\"td-grade\"><input data-grade=\"" + users[i].id + "\" placeholder=\"" + users[i].grade + "\" class=\"input-grade-corr\" type=\"text\"></td><td class=\"table-row-close\"><button value=\"" + users[i].id +"\" id=\"btn-row-close\" data-btn=" + users[i].id + " type=\"button\" class=\"btn btn-outline-danger btn-width\">Удалить</button></td></tr>";
     }
 }
 
@@ -200,6 +200,7 @@ $('#table').delegate('.input-date-corr', 'keypress', function (e){
     let indexDate = $(this).attr("data-date") - 1;
     console.log(indexDate);
     let indexDate2 = $(this).val();
+    let indexDate3 = $(this).next().val();
     console.log(indexDate2);
     var arrD = indexDate2.split("-");
     arrD[1] -= 1;
@@ -207,11 +208,20 @@ $('#table').delegate('.input-date-corr', 'keypress', function (e){
     if ((d.getFullYear() == arrD[2]) && (d.getMonth() == arrD[1]) && (d.getDate() == arrD[0])) {
       console.log(users[indexDate].date);
       users[indexDate].date = indexDate2;
+      users[indexDate].date2 = indexDate3;
       console.log(users[indexDate].date);
       numberNew();
     } else {
       $(this).val("");
+      $(this).next().val("");
       alert("Введена некорректная дата!");
     }
   }
 });
+
+
+// преобразуем дату обратно для сортировки
+
+$('#table').delegate('.input-date-corr', 'input change', function() {
+  $(this).next().val(this.value.replace(/(\d*)-(\d*)-(\d*)/, '$3-$2-$1'));
+})
