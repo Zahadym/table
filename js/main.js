@@ -14,7 +14,7 @@ see();
 function see() {
     document.querySelector("#table").innerHTML = "";
     for (i = 0; i < users.length; i++) {
-      document.querySelector("#table").innerHTML += "<tr class=\"id\" id=a" + users[i].id + "><td>" + users[i].id + "</td><td>" + users[i].date + "</td><td>" + users[i].subject + "</td><td>" + users[i].grade + "</td><td class=\"table-row-close\"><button value=\"" + users[i].id +"\" id=\"btn-row-close\" data-btn=" + users[i].id + " type=\"button\" class=\"btn btn-outline-danger btn-width\">Удалить</button></td></tr>";
+      document.querySelector("#table").innerHTML += "<tr class=\"id\" id=a" + users[i].id + "><td>" + users[i].id + "</td><td>" + users[i].date + "</td><td>" + users[i].subject + "</td><td value=\"" + users[i].id + "\"  id=\"td-grade\"><input data-id=\"" + users[i].id + "\" placeholder=\"" + users[i].grade + "\" id=\"b" + users[i].id + "\" class=\"input-grade-corr\" type=\"text\"></td><td class=\"table-row-close\"><button value=\"" + users[i].id +"\" id=\"btn-row-close\" data-btn=" + users[i].id + " type=\"button\" class=\"btn btn-outline-danger btn-width\">Удалить</button></td></tr>";
     }
 }
 
@@ -139,4 +139,24 @@ $('#table').delegate('.btn-width', 'click',  function (){
   users.splice(index - 1, 1);
   see();
   numberNew();
+});
+
+// редактирование оценки
+
+$(".input-grade-corr").fade;
+
+$('#table').delegate('.input-grade-corr', 'keypress',  function (e){
+  
+  if(e.which == 13) {
+    let indexGrade = $(this).attr('data-id') - 1;
+    let indexGrade2 = $(this).val();
+    if(indexGrade2 > 0 && indexGrade2 < 6 || indexGrade2 == "Зачет"){
+      console.log(indexGrade);
+      console.log(indexGrade2);
+      users[indexGrade].grade = indexGrade2;
+    }
+    else {
+      $(this).val("");
+    }
+  }
 });
